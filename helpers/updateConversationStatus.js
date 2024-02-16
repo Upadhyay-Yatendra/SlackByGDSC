@@ -1,5 +1,5 @@
-import Conversations from '../models/conversation'
-import User from '../models/user'
+import { Conversation } from "../models/conversation.js";
+import User from "../models/user.js";
 
 async function updateUserStatus(id, isOnline) {
   try {
@@ -8,53 +8,53 @@ async function updateUserStatus(id, isOnline) {
       id,
       { isOnline },
       { new: true }
-    )
-    return updatedUser
+    );
+    return updatedUser;
   } catch (error) {
-    console.error('Error updating user status:', error)
-    throw error
+    console.error("Error updating user status:", error);
+    throw error;
   }
 }
 
 export default async function updateConversationStatus(id, isOnline) {
   try {
-    await updateUserStatus(id, isOnline)
+    await updateUserStatus(id, isOnline);
 
     // Find all conversations where the user is part of the collaborators
-    const conversations = await Conversations.find({
+    const conversations = await Conversation.find({
       collaborators: { $in: id },
-    }).populate('collaborators')
-
+    }).populate("collaborators");
+    console.log("\nconversations->", conversations);
     // Check if all collaborators in each conversation are online
     for (const conversation of conversations) {
-      let allCollaboratorsOnline = true
+      let allCollaboratorsOnline = true;
 
       for (const collaborator of conversation.collaborators) {
-        const user = await User.findById(collaborator._id)
+        const user = await User.findById(collaborator._id);
         if (!(user && user.isOnline)) {
-          allCollaboratorsOnline = false
-          break // No need to check further if one is offline
+          allCollaboratorsOnline = false;
+          break; // No need to check further if one is offline
         }
       }
 
       if (allCollaboratorsOnline) {
         // Update the Conversation model's "isOnline" field to true
-        await Conversations.findByIdAndUpdate(
+        await Conversation.findByIdAndUpdate(
           conversation._id,
           { isOnline: true },
           { new: true }
-        )
+        );
       } else {
-        await Conversations.findByIdAndUpdate(
+        await Conversation.findByIdAndUpdate(
           conversation._id,
           { isOnline: false },
           { new: true }
-        )
+        );
       }
     }
   } catch (error) {
     // Handle any errors here
-    console.error('Error updating conversation status:', error)
-    throw error
+    console.error("Error updating conversation status:", error);
+    throw error;
   }
 }

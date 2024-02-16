@@ -4,5 +4,5 @@ function successResponse(res, data) {
     });
   }
   
-  module.exports = successResponse;
+export default successResponse;
   

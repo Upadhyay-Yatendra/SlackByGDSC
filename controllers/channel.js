@@ -1,11 +1,15 @@
-import { Request, Response, NextFunction } from "express";
-import Channel from "../models/channel";
-import successResponse from "../helpers/successResponse";
+import express from "express";
+
+
+const { Request, Response, NextFunction } = express;
+
+import {Channel} from "../models/channel.js";
+import successResponse from "../helpers/successResponse.js";
 
 // @desc    create channel
 // @route   POST /api/v1/channel/create
 // @access  Private
-exports.createChannel = async (req, res, next) => {
+export const createChannel = async (req, res, next) => {
   try {
     const { name, organisationId } = req.body;
     const channel = await Channel.create({
@@ -19,7 +23,7 @@ exports.createChannel = async (req, res, next) => {
   }
 };
 
-exports.getChannels = async (req, res, next) => {
+export const getChannels = async (req, res, next) => {
   try {
     const id = req.params.id;
     const channels = await Channel.find({ organisation: id })
@@ -36,7 +40,7 @@ exports.getChannels = async (req, res, next) => {
   }
 };
 
-exports.getChannel = async (req, res, next) => {
+export const getChannel = async (req, res, next) => {
   try {
     const id = req.params.id;
     const channel = await Channel.findById(id)
@@ -60,7 +64,7 @@ exports.getChannel = async (req, res, next) => {
   }
 };
 
-exports.updateChannel = async (req, res, next) => {
+export const updateChannel = async (req, res, next) => {
   try {
     const id = req.params.id;
     const channel = await Channel.findById(id);

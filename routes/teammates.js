@@ -1,6 +1,6 @@
 import express from 'express'
-import { createTeammates, getTeammate } from '../controllers/teammates'
-import { protect } from '../middleware/protect'
+import { createTeammates, getTeammate } from '../controllers/teammates.js'
+import { protect } from '../middleware/protect.js'
 
 const router = express.Router()
 

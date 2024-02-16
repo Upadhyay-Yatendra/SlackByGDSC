@@ -1,6 +1,6 @@
 import express from 'express'
-import { getConversation, getConversations } from '../controllers/conversations'
-import { protect } from '../middleware/protect'
+import { getConversation, getConversations } from '../controllers/conversations.js'
+import { protect } from '../middleware/protect.js'
 
 const router = express.Router()
 

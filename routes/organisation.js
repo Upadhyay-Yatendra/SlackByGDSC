@@ -1,10 +1,10 @@
 import express from 'express'
-import { protect } from '../middleware/protect'
+import { protect } from '../middleware/protect.js'
 import {
   createOrganisation,
   getOrganisation,
   getWorkspaces,
-} from '../controllers/organisation'
+} from '../controllers/organisation.js'
 
 const router = express.Router()
 

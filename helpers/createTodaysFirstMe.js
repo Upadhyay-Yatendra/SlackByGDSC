@@ -1,4 +1,4 @@
-const Message = require('../models/message');
+import Message from "../models/message.js";
 
 function formatDate(date) {
   const options = { weekday: 'long', month: 'long', day: 'numeric' };
@@ -40,4 +40,4 @@ async function createTodaysFirstMessage({ channelId, conversationId, organisatio
   }
 }
 
-module.exports = createTodaysFirstMessage;
+export default {createTodaysFirstMessage};

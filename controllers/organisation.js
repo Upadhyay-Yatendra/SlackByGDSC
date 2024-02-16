@@ -1,14 +1,15 @@
-import { Request, Response, NextFunction } from "express";
-import Organisation from "../models/organisation";
-import successResponse from "../helpers/successResponse";
-import Channel from "../models/channel";
-import Conversations from "../models/conversation";
-import { UserSchemaType } from "src/models/user";
+import express from "express";
+const { Request, Response, NextFunction } = express;
+import {Organisation} from "../models/organisation.js";
+import successResponse from "../helpers/successResponse.js";
+import {Channel} from "../models/channel.js";
+import {Conversation} from "../models/conversation.js";
+// import { UserSchemaType } from "../models/user.js";
 
 // @desc    get organisation
 // @route   GET /api/v1/organisation/:id
 // @access  Private
-exports.getOrganisation = async (req, res, next) => {
+export const getOrganisation = async (req, res, next) => {
   try {
     const id = req.params.id;
     if (id) {
@@ -27,7 +28,7 @@ exports.getOrganisation = async (req, res, next) => {
         organisation: id,
       }).populate("collaborators");
 
-      const conversations = await Conversations.find({
+      const conversations = await Conversation.find({
         organisation: id,
       }).populate("collaborators");
 
@@ -85,7 +86,7 @@ exports.getOrganisation = async (req, res, next) => {
 // @desc    get organisation
 // @route   POST /api/v1/organisation
 // @access  Private
-exports.createOrganisation = async (req, res, next) => {
+export const createOrganisation = async (req, res, next) => {
   try {
     const { name, id } = req.body;
 
@@ -117,7 +118,7 @@ exports.createOrganisation = async (req, res, next) => {
 // @desc    get organisations associated with an email
 // @route   POST /api/v1/organisation/workspaces
 // @access  Private
-exports.getWorkspaces = async (req, res, next) => {
+export const getWorkspaces = async (req, res, next) => {
   try {
     const id = req.user.id;
     // Find all organizations where the user is a co-worker

@@ -1,4 +1,4 @@
-function joinTeammatesEmail(
+export function joinTeammatesEmail(
     name,
     email,
     organisationName,

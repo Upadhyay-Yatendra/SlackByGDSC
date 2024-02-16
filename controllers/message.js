@@ -1,11 +1,12 @@
-import { Request, Response, NextFunction } from "express";
-import Message from "../models/message";
-import successResponse from "../helpers/successResponse";
+import express from "express";
+const { Request, Response, NextFunction } = express;
+import Message from "../models/message.js";
+import successResponse from "../helpers/successResponse.js";
 
 // @desc    get messages
 // @route   POST /api/v1/message
 // @access  Private
-exports.getMessages = async (req, res, next) => {
+export const getMessages = async (req, res, next) => {
   try {
     const channelId = req.query.channelId;
     const conversationId = req.query.conversation;
@@ -45,7 +46,7 @@ exports.getMessages = async (req, res, next) => {
 // @desc    get message
 // @route   POST /api/v1/message
 // @access  Private
-exports.getMessage = async(
+export const getMessage = async(
   req,
   res,
   next

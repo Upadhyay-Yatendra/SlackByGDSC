@@ -1,6 +1,9 @@
-import { Request, Response, NextFunction } from 'express'
-import Thread from '../models/thread'
-import successResponse from '../helpers/successResponse'
+import express from "express";
+
+
+const { Request, Response, NextFunction } = express;
+import {Thread} from '../models/thread.js'
+import successResponse from '../helpers/successResponse.js'
 
 // @desc    get threads
 // @route   POST /api/v1/threads

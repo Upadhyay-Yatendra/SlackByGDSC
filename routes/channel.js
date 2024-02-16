@@ -3,8 +3,8 @@ import {
   createChannel,
   getChannel,
   updateChannel,
-} from '../controllers/channel'
-import { protect } from '../middleware/protect'
+} from '../controllers/channel.js'
+import { protect } from '../middleware/protect.js'
 
 const router = express.Router()
 

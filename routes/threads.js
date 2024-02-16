@@ -1,6 +1,6 @@
 import express from 'express'
-import { protect } from '../middleware/protect'
-import { getThreads } from '../controllers/thread'
+import { protect } from '../middleware/protect.js'
+import { getThreads } from '../controllers/thread.js'
 
 const router = express.Router()
 

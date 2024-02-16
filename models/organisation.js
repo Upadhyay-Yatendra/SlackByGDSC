@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 const organisationSchema = new mongoose.Schema(
   {
@@ -33,4 +34,4 @@ organisationSchema.methods.generateJoinLink = function () {
   this.url = `${url}/${this.name}`;
 };
 
-module.exports = mongoose.model('Organisation', organisationSchema);
+export const Organisation = mongoose.model('Organisation', organisationSchema);

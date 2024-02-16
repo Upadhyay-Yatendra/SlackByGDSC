@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const randomize = require('randomatic');
+import mongoose from 'mongoose';
+import  jwt from 'jsonwebtoken';
+import  crypto from 'crypto';
+import randomize from 'randomatic';
 
 const userSchema = new mongoose.Schema(
   {
@@ -52,4 +52,7 @@ userSchema.methods.getVerificationCode = function () {
   return verificationCode;
 };
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+export default User;
+

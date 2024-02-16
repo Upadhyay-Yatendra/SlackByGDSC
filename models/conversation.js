@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 const conversationSchema = new mongoose.Schema(
   {
@@ -59,4 +60,4 @@ const conversationSchema = new mongoose.Schema(
 // Define a compound index on the collaborators field
 conversationSchema.index({ collaborators: 1 });
 
-module.exports = mongoose.model('Conversation', conversationSchema);
+export const Conversation = mongoose.model('Conversation', conversationSchema);

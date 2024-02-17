@@ -29,7 +29,8 @@ import passport from "passport";
 import cookieSession from "cookie-session";
 
 const app = express();
-
+// Enable 'trust proxy'
+app.set('trust proxy', true);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {

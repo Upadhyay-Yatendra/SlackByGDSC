@@ -25,6 +25,8 @@ const organisationSchema = new mongoose.Schema(
   }
 );
 
+// ******************************I have'nt provided the Staging and production URL yet.
+
 organisationSchema.methods.generateJoinLink = function () {
   const url =
     process.env.NODE_ENV === 'development'
